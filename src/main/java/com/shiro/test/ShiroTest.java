@@ -10,14 +10,14 @@ import org.apache.shiro.util.Factory;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
-public class ShiroTest {
-    JdbcRealm
+public class    ShiroTest {
+    //JdbcRealm
     public static void main(String[] args) {
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-mysql.ini");
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("root", "123456");
+        UsernamePasswordToken token = new UsernamePasswordToken("admin@shiro.com", "admin");
         //System.out.println(subject.isAuthenticated());
        try {
            subject.login(token);
@@ -31,20 +31,20 @@ public class ShiroTest {
                    System.out.println("没有admin角色");
                }
 
-               if(subject.isPermitted("search"))
+               if(subject.isPermitted("/get.html"))
                {
-                   System.out.println("有search权限");
+                   System.out.println("有get权限");
                }
                else
                {
-                   System.out.println("有search权限");
+                   System.out.println("没有get权限");
                }
-               if(subject.isPermitted("delete"))
+               if(subject.isPermitted("/add.html"))
                {
-                   System.out.println("有delete权限");
+                   System.out.println("有add权限");
                }
                else {
-                   System.out.println("没有delete权限");
+                   System.out.println("没有add权限");
                }
            }
 
