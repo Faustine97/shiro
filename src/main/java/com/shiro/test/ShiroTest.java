@@ -8,7 +8,8 @@ import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.apache.shiro.SecurityUtils;
-
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.apache.shiro.realm.jdbc.JdbcRealm;
 public class ShiroTest {
     JdbcRealm
     public static void main(String[] args) {
